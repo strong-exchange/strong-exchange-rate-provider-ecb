@@ -1,12 +1,15 @@
+import pytest
+
 from .tasks import update_daily_rates_from_ecb, load_history_from_ecb_file
 from .data import rates, latest_daily_rate_for, history_data
 
 
-def test_update_daily_rates_from_ecb_task_works():
+@pytest.mark.anyio
+async def test_update_daily_rates_from_ecb_task_works():
     assert not rates
     assert latest_daily_rate_for is None
 
-    update_daily_rates_from_ecb()
+    await update_daily_rates_from_ecb()
 
     assert rates
     assert "USD" in rates

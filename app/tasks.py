@@ -14,7 +14,8 @@ ns = {
 }
 
 
-def update_daily_rates_from_ecb():
+async def update_daily_rates_from_ecb():
+    # ToDo: add test for this variable
     global latest_daily_rate_for
 
     response = client.get(
